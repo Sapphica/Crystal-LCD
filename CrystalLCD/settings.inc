@@ -1,5 +1,5 @@
 [Refresh]
-Command=/!RainmeterRefresh Cystal-LCD\CystalLCD
+Command=/!RainmeterRefresh Crystal-LCD\CrystalLCD
 [Color]
 Hex=0xFFFFFF
 [Font]
