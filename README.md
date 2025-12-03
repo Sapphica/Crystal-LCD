@@ -45,11 +45,7 @@ All of this is driven through **Rainmeter + HWiNFO + MSI Afterburner + plugins**
 - **This skin is tuned for a specific hardware setup and resolution (1920×480).**
 - **It can be adapted**, but the intent is very much:
 
-<div align="center">
-
 *“This is my personal glass telemetry cockpit.”*
-
-</div>
 
 The `.ini` is intentionally dense: it’s a full subsystem, not a toy widget.
 
