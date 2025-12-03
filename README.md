@@ -32,7 +32,7 @@ It’s built to sit under the main display and show **everything that actually m
 - Per-drive SMART health, lifespan, and temperature  
 - System uptime, RAM usage, top CPU process
 
-All of this is driven through **Rainmeter + HWiNFO + MSI Afterburner + plugins**, wired together by a single 'CrystalTelemetry.ini' and 'GIF.ini'.
+All of this is driven through **Rainmeter + HWiNFO + MSI Afterburner + plugins**, wired together by a single  `CrystalTelemetry.ini` and `GIF.ini`.
 
 ---
 
@@ -40,7 +40,7 @@ All of this is driven through **Rainmeter + HWiNFO + MSI Afterburner + plugins**
 
 - **This skin is tuned for a specific hardware setup and resolution (1920×480).
 - **It can be adapted, but the intent is very much:
-- **“This is my personal glass telemetry cockpit.”
+     “This is my personal glass telemetry cockpit.”
 
 The .ini is intentionally dense: it’s a full subsystem, not a toy widget.
 
@@ -50,7 +50,7 @@ The .ini is intentionally dense: it’s a full subsystem, not a toy widget.
 
 ### CPU Telemetry
 
-- **CPU total usage** (`measureCPU`) with warning color when > 90%  
+CPU total usage** (`measureCPU`) with warning color when > 90%  
 - **Per-core utilization** (`measureCPUCore1` … `measureCPUCore8`)  
 - **Active clock selection** via `ClockSelect`:
   - Picks the “real” active core / CCD based on utilization (e.g. 3D cache CCD vs non-3D)  
