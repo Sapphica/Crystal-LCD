@@ -16,7 +16,7 @@ _A custom Rainmeter telemetry engine driving a 1920×480 glass LCD with real-tim
 
 ---
 
-## Demo
+## 🎥 Demo
 
 <div align="center">
   <img src="https://github.com/Sapphica/Crystal-LCD/blob/main/assets/LCD.gif" alt="Crystal-LCD Telemetry Panel" width="720">
@@ -24,7 +24,7 @@ _A custom Rainmeter telemetry engine driving a 1920×480 glass LCD with real-tim
 
 ---
 
-## Purpose
+## ⭐ Purpose
 
 Crystal-LCD is a **glass-style telemetry HUD** for a dedicated 1920×480 LCD panel.  
 It’s built to sit under the main display and show **everything that actually matters** while gaming or stress-testing:
@@ -37,153 +37,100 @@ It’s built to sit under the main display and show **everything that actually m
 - Per-drive SMART health, lifespan, and temperature  
 - System uptime, RAM usage, top CPU process  
 
-
-All of this is driven through **Rainmeter + HWiNFO + MSI Afterburner + plugins**, wired together by a single  `CrystalTelemetry.ini` and `GIF.ini`.
+All of this is driven through **Rainmeter + HWiNFO + MSI Afterburner + plugins**, wired together by a single `CrystalTelemetry.ini` and `GIF.ini`.
 
 ---
 
-## Notes
+## 📝 Notes
 
 - **This skin is tuned for a specific hardware setup and resolution (1920×480).**
 - **It can be adapted**, but the intent is very much:
 
-*“This is my personal glass telemetry cockpit.”*
+<div align="center"><i>“This is my personal glass telemetry cockpit.”</i></div>
 
 The `.ini` is intentionally dense: it’s a full subsystem, not a toy widget.
 
 ---
 
-## Features
+## 🧩 Features
 
-### CPU Telemetry
+### 🔥 CPU Telemetry
 
-CPU total usage** (`measureCPU`) with warning color when > 90%  
-- **Per-core utilization** (`measureCPUCore1` … `measureCPUCore8`)  
-- **Active clock selection** via `ClockSelect`:
-  - Picks the “real” active core / CCD based on utilization (e.g. 3D cache CCD vs non-3D)  
-- **CPU clock reporting** (`CPU_CLOCK0`, `CPU_CLOCK1`)  
-- **CPU voltage** (`CPU_VOLT0`)  
-- **CPU package power** (`CPU_Power`, `CPU_PowerMax`)  
-- **CPU temperature (current + max)** via `CPU_TEMP0` / `CPU_TEMP0M`  
-- **Overclock indicator**:
-  - `LetterSelect` + `Pulse` + `MeterOverclock`
-  - Text: `Overclock: <clock> <label>`
-  - Changes color when your x3D / OC path is active
+- CPU total usage with warning color when > 90%  
+- Per-core utilization  
+- Active-clock selection logic (detects which CCD is active, x3D vs non-3D)  
+- CPU clock reporting  
+- CPU voltage  
+- CPU package power  
+- CPU temperature (current + max)  
+- Overclock indicator with gold pulse when the x3D path is active  
 
-### GPU Telemetry (GPU 0 + optional GPU 1)
+### 🎮 GPU Telemetry (GPU 0 + optional GPU 1)
 
-- **Core clock** (`GPU_CORE_CLOCK0`, `GPU_CORE_CLOCK1`)  
-- **Memory clock** (`GPU_MEM_CLOCK0`, `GPU_MEM_CLOCK1`)  
-- **GPU temperature (current + max)** (`GPU_TEMP0`, `GPU_TEMP0M`, `GPU_TEMP1`)  
-- **PCIe link speed** (`PCIe_LINK0`, `PCIe_LINK1`)  
-- **GPU voltage** (`GPU_VOLT`)  
-- **GPU total board power** (`GPU_TOTAL_PWR`, `GPU_TOTAL_PWRMax`)  
-- **VRAM usage %** (`GPU_MEM_USAGE%`)  
-- **VRAM allocated (human readable)** (`GPU_MEM_USED`, `GPU_MEM_USED1`)  
+- Core clock  
+- Memory clock  
+- GPU temps (current + max)  
+- PCIe link speed  
+- GPU voltage  
+- Total power draw  
+- VRAM usage (%) and allocated (GB/MB)  
+- PCIe + VRAM + voltage combined readout line  
 
-Rendered as:
+### 🎯 FPS + Performance Behavior
 
-- Big GPU temp readout: `GPU: <current>°C | <max>°C`  
-- VRAM usage readout: GB/MB scaled text  
-- PCIe + VRAM + GPU voltage line: `PCIe <GT/s>  <VRAM>  <Vcore>`
+- Live FPS  
+- Rolling average  
+- Auto layout switching at ≥ 100 FPS  
+- Click-to-refresh hotspot  
 
-### FPS + Performance Behavior
+### 🧠 Memory + System
 
-Using **MSI Afterburner plugin**:
+- RAM used vs total  
+- Swap usage  
+- System uptime  
+- CPU name (registry)  
 
-- `MeasureFPS` – live FPS  
-- `MeasureFPSAvg` – smoothed rolling average  
-- `MeasureFPSBoth100` – helper to check when both live and avg FPS ≥ 100
+### 💾 Storage / SMART Telemetry
 
-Layout behavior:
+- Drive Fail / Warning status  
+- Drive Life %
+- Drive temperature per-drive  
 
-- **`MeterFPSBig`** shown when FPS < 100  
-- **`MeterFPSSmall`** shown when FPS ≥ 100  
-- Auto-switching handled by `IfCondition` on `MeasureFPSBoth100`  
-- Display text: `FPS: <live>|<avg>`
+### 💧 Cooling / Loop Monitoring
 
-A refresh hotspot (`MeterRefresh`) lets you click to force a skin refresh / FPS reset from the LCD.
+- Pump RPM  
+- Radiator temperature (current + max)  
 
-### Memory + System
+### 🧨 Top Process View
 
-- **Physical RAM used vs total**:
-  - `MeasurePhysMemTotal` + `measureRAM`
-  - Displayed as: `Memory: used / total`
-- **Swap file usage** (`measureSWAP`) (available, just not foregrounded visually in all layouts)
-- **System uptime**:
-  - `measureUptime` → `MeterUptimeTitle` + `meterUptime`
-  - Format: `X Days, Y Hours, Z Minutes`
-- **CPU name** from registry (`MeasureCPUName`)
+- Live top CPU process  
+- CPU % for that process  
 
-### Storage / SMART Telemetry
+### ⚡ Total Power (Combined)
 
-Per-drive SMART via HWiNFO plugin:
+- GPU + CPU power sum (ready when you enable CPU_Power)  
 
-- `SMARTFAIL0`…`SMARTFAIL3` – “Fail / No” status  
-- `SMARTWARN0`…`SMARTWARN3` – warning status (pre-fail conditions)  
-- `SMARTLIFE0` / `SMARTLIFE1` – drive life remaining  
-- `measure1`, `measure2`, `measure3`, `measure4` – per-drive temperatures
-
-Used for:
-
-- Showing active drive temps in °C  
-- Quick surface-level health indicator on the LCD so you see if anything is dying.
-
-### Cooling / Loop Monitoring
-
-- **Pump RPM** (`Pump_RPM` → `Pump_RPMs` meter)
-  - `P: <rpm> RPM`
-- **Radiator temperature**:
-  - `measure5` (current), `measure5Max` (max)
-  - Output as: `RAD: <current>°C|<max>°C`
-
-### “Top Process” View
-
-Using `AdvancedCPU.dll`:
-
-- `m.TopProcess` – name of the current top CPU process  
-- `m.TopProcess%` – its CPU usage %  
-- Mapped into:
-  - `meterTitleTopProcess` – “Top Process:” label  
-  - `meterTopProcess` and `meterTopProcess%` – name + % side by side  
-
-You basically get a **live “what’s eating my CPU” banner** on the LCD.
-
-### Total Power (Combined Draw)
-
-- `CalcTotalPower` currently sums `GPU_TOTAL_PWR + 0`  
-  - Ready to incorporate CPU power (`CPU_Power`) when you want to flip it back on  
-- Displayed via `TotalPower` meter as:
-  - `Power Draw: <watts>`
 ---
 
 ## 🧰 Technology Stack
 
-### Application Environment
+### 💻 Application Environment
 
-- **Windows + Rainmeter** – skin engine and rendering  
-- **HWiNFO** – sensor telemetry (CPU, GPU, drives, temps, power)  
-- **MSI Afterburner** – FPS + GPU usage integration  
-- **AdvancedCPU.dll** – top-process detection  
-- **Mini 1920×480 LCD panel** – hardware target (HUD under main display)
+- **Windows + Rainmeter**  
+- **HWiNFO**  
+- **MSI Afterburner**  
+- **AdvancedCPU.dll**  
+- **Mini 1920×480 LCD panel**  
 
-### Code & Config
+### ⚙️ Code & Config
 
-- **Rainmeter `.ini` skin** (`CrystalTelemetry.ini` or equivalent)
-  - Measures for CPU, GPU, drives, loop, FPS, RAM, uptime
-  - Meters for structured, glass-style layout
-- **Lua** (optional helper scripts in the project)
-  - Used for extendable logic / formatting where Rainmeter expressions get nasty
-- **C++ plugin backends**
-  - HWiNFO plugin  
-  - MSI Afterburner plugin  
-  - AdvancedCPU plugin  
+- **Rainmeter `.ini` skin**  
+- **Lua** helper scripts  
+- **C++ plugin backends** for HWiNFO, MSI, AdvancedCPU  
 
 ---
 
-## Structure (High Level)
-
-Typical structure in this repo:
+## 📁 Structure (High Level)
 
 ```text
 Crystal-LCD/
